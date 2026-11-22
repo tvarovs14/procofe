@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Про кофе — спешелти кофе и выпечка в Белгороде</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAF6F0;
+      --surface: #F2EBE1;
+      --surface-hover: #EAE0D2;
+      --text-primary: #241B15;
+      --text-secondary: #6E5D52;
+      --accent: #B86B35;
+      --accent-hover: #9E5929;
+      --border: rgba(36, 27, 21, 0.12);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+      padding-bottom: 96px;
+    }
+
+    /* Parallax Coffee Cup */
+    .parallax-layer {
+      position: fixed;
+      top: 12vh;
+      right: -68px;
+      width: 240px;
+      height: 360px;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.24;
+      will-change: transform;
+      transition: opacity 0.3s ease;
+    }
+
+    @media (min-width: 768px) {
+      .parallax-layer {
+        right: 8vw;
+        top: 14vh;
+        width: 310px;
+        height: 460px;
+        opacity: 0.32;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .parallax-layer {
+        right: calc(50% - 480px);
+      }
+    }
+
+    /* Layout Container */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .header-meta {
+      font-size: 13px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 44px 0 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 56px;
+      line-height: 0.96;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 72px;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      max-width: 440px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    @media (min-width: 540px) {
+      .hero-actions {
+        flex-direction: row;
+      }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 22px;
+      border-radius: 12px;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.99);
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #FAF6F0;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--surface);
+      color: var(--text-primary);
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--surface-hover);
+    }
+
+    .hero-info {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (min-width: 540px) {
+      .hero-info {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--text-secondary);
+    }
+
+    .info-item strong {
+      display: block;
+      color: var(--text-primary);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Sections */
+    .section {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-bottom: 24px;
+      scrollbar-width: none;
+    }
+
+    .tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      padding: 9px 16px;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--text-primary);
+      color: var(--text-primary);
+    }
+
+    .tab-btn.active {
+      background-color: var(--text-primary);
+      color: var(--bg);
+      border-color: var(--text-primary);
+    }
+
+    /* Menu List */
+    .menu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background-color: rgba(242, 235, 225, 0.78);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: border-color 0.2s ease;
+    }
+
+    .menu-item:hover {
+      border-color: rgba(36, 27, 21, 0.28);
+    }
+
+    .menu-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .menu-item-top {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+
+    .menu-item-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .menu-item-vol {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .menu-item-desc {
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--text-secondary);
+    }
+
+    .menu-item-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .menu-item-price {
+      font-size: 15px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .add-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background-color: var(--bg);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .add-btn:hover {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--bg);
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      padding: 2px;
+      height: 36px;
+    }
+
+    .qty-btn {
+      width: 28px;
+      height: 30px;
+      border: none;
+      background: transparent;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 7px;
+    }
+
+    .qty-btn:hover {
+      background-color: var(--surface);
+    }
+
+    .qty-val {
+      font-size: 14px;
+      font-weight: 600;
+      min-width: 16px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Promos */
+    .promos-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 540px) {
+      .promos-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .promo-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .promo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+
+    .promo-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+
+    .promo-text {
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--text-secondary);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 36px 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    @media (min-width: 540px) {
+      .footer-top {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: background-color 0.2s ease;
+    }
+
+    .footer-link:hover {
+      background-color: var(--surface-hover);
+    }
+
+    .footer-bottom {
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Bottom Floating Preorder Bar */
+    .cart-bar {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translate(-50%, 140%);
+      width: calc(100% - 32px);
+      max-width: 600px;
+      background-color: var(--text-primary);
+      color: var(--bg);
+      border-radius: 16px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 40;
+      cursor: pointer;
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .cart-bar.visible {
+      transform: translate(-50%, 0);
+    }
+
+    .cart-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cart-count {
+      background-color: var(--accent);
+      color: var(--bg);
+      font-size: 13px;
+      font-weight: 600;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cart-bar-title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .cart-bar-sub {
+      font-size: 12px;
+      color: rgba(250, 246, 240, 0.7);
+    }
+
+    .cart-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Preorder Drawer / Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(36, 27, 21, 0.45);
+      z-index: 50;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    @media (min-width: 640px) {
+      .modal-backdrop {
+        align-items: center;
+        padding: 20px;
+      }
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-sheet {
+      width: 100%;
+      max-width: 520px;
+      background-color: var(--bg);
+      border-radius: 20px 20px 0 0;
+      border: 1px solid var(--border);
+      padding: 24px 20px 28px;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @media (min-width: 640px) {
+      .modal-sheet {
+        border-radius: 20px;
+        transform: translateY(16px);
+      }
+    }
+
+    .modal-backdrop.open .modal-sheet {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 18px;
+    }
+
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .close-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .order-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .order-row-title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .order-row-meta {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 28px 16px;
+      background-color: var(--surface);
+      border-radius: 14px;
+      margin-bottom: 20px;
+    }
+
+    .empty-state p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+
+    .time-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    .time-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .time-option {
+      padding: 11px 8px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s ease;
+    }
+
+    .time-option.active {
+      background-color: var(--text-primary);
+      color: var(--bg);
+      border-color: var(--text-primary);
+    }
+
+    .cup-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .cup-toggle-text {
+      font-size: 13px;
+    }
+
+    .cup-toggle-text strong {
+      display: block;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .cup-toggle-text span {
+      color: var(--accent);
+      font-size: 12px;
+    }
+
+    .checkbox-box {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 1.5px solid var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .cup-toggle.checked .checkbox-box {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+
+    .order-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 16px;
+      padding-top: 4px;
+    }
+
+    .order-total-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .order-total-sum {
+      font-size: 24px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    .btn-disabled {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Parallax Coffee Cup SVG -->
+  <div class="parallax-layer" id="parallaxCup" aria-hidden="true">
+    <svg viewBox="0 0 260 390" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M56 38C56 31.3726 61.3726 26 68 26H192C198.627 26 204 31.3726 204 38V48H56V38Z" fill="#EFE8DD" stroke="#241B15" stroke-width="2.2"/>
+      <path d="M168 26V18C168 15.7909 169.791 14 172 14H186C188.209 14 190 15.7909 190 18V26" fill="#E5DDD0" stroke="#241B15" stroke-width="2.2"/>
+      <rect x="44" y="48" width="172" height="16" rx="6" fill="#F7F2EA" stroke="#241B15" stroke-width="2.2"/>
+      <path d="M54 64H206L197 142H63L54 64Z" fill="#FAF6F0" stroke="#241B15" stroke-width="2.2" stroke-linejoin="round"/>
+      <path d="M61 134H199L187 254H73L61 134Z" fill="#C98A5B" stroke="#241B15" stroke-width="2.2" stroke-linejoin="round"/>
+      <line x1="82" y1="142" x2="88" y2="246" stroke="#241B15" stroke-width="1.2" stroke-opacity="0.28"/>
+      <line x1="98" y1="142" x2="102" y2="246" stroke="#241B15" stroke-width="1.2" stroke-opacity="0.28"/>
+      <line x1="114" y1="142" x2="116" y2="246" stroke="#241B15" stroke-width="1.2" stroke-opacity="0.28"/>
+      <line x1="130" y1="142" x2="130" y2="246" stroke="#241B15" stroke-width="1.2" stroke-opacity="0.28"/>
+      <line x1="146" y1="142" x2="144" y2="246" stroke="#241B15" stroke-width="1.2" stroke-opacity="0.28"/>
+      <line x1="162" y1="142" x2="158" y2="246" stroke="#241B15" stroke-width="1.2" stroke-opacity="0.28"/>
+      <line x1="178" y1="142" x2="172" y2="246" stroke="#241B15" stroke-width="1.2" stroke-opacity="0.28"/>
+      <circle cx="130" cy="194" r="32" fill="#FAF6F0" stroke="#241B15" stroke-width="2"/>
+      <circle cx="130" cy="194" r="26" stroke="#B86B35" stroke-width="1.2" stroke-dasharray="3 3"/>
+      <ellipse cx="130" cy="194" rx="8" ry="12" transform="rotate(-24 130 194)" fill="#B86B35"/>
+      <path d="M126 184C131 190 129 198 134 204" stroke="#FAF6F0" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M74 254H186L176 346C175.3 351.8 170.4 356 164.5 356H95.5C89.6 356 84.7 351.8 84 346L74 254Z" fill="#FAF6F0" stroke="#241B15" stroke-width="2.2" stroke-linejoin="round"/>
+      <path d="M86 344H174" stroke="#241B15" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <a href="#" class="logo">Про кофе</a>
+      <div class="header-meta">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+        <span>Ежедневно 09:00–21:00</span>
+      </div>
+    </header>
+
+    <!-- 1. Hero Section -->
+    <section class="hero">
+      <h1 class="hero-title">Про кофе</h1>
+      <p class="hero-subtitle">Спешелти кофе и свежая выпечка за 5 минут до работы</p>
+
+      <div class="hero-actions">
+        <button type="button" class="btn btn-primary" id="openOrderHero">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          <span>Заказать к определенному времени</span>
+        </button>
+        <a href="https://yandex.ru/maps/?text=Белгород, Садовая улица, 112" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Построить маршрут</span>
+        </a>
+      </div>
+
+      <div class="hero-info">
+        <div class="info-item">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+          <div>
+            <strong>График работы</strong>
+            Ежедневно с 09:00 до 21:00
+          </div>
+        </div>
+        <div class="info-item">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <strong>Адрес кофейни</strong>
+            Садовая улица, 112 · Управа №19 «Студенческая», Белгород
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Interactive Menu -->
+    <section class="section" id="menu">
+      <div class="section-header">
+        <h2 class="section-title">Меню</h2>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" data-category="classic" role="tab">Классика</button>
+        <button class="tab-btn" data-category="signature" role="tab">Авторские</button>
+        <button class="tab-btn" data-category="food" role="tab">Еда и десерты</button>
+      </div>
+
+      <div class="menu-list" id="menuContainer"></div>
+    </section>
+
+    <!-- 3. Promos -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Привилегии</h2>
+      </div>
+
+      <div class="promos-grid">
+        <div class="promo-card">
+          <div class="promo-badge">
+            <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Лояльность</span>
+          </div>
+          <div>
+            <h3 class="promo-title">6-й кофе в подарок</h3>
+            <p class="promo-text">Начисляем штампы по номеру телефона. Любой напиток из классического меню бесплатно на шестой визит.</p>
+          </div>
+        </div>
+
+        <div class="promo-card">
+          <div class="promo-badge">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            <span>Осознанно</span>
+          </div>
+          <div>
+            <h3 class="promo-title">Скидка 15% в свой стакан</h3>
+            <p class="promo-text">Приносите многоразовый термостакан или тамблер — приготовим кофе в него со скидкой 15%.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Footer -->
+    <footer class="footer">
+      <div class="footer-top">
+        <div>
+          <div class="logo" style="margin-bottom: 6px;">Про кофе</div>
+          <p style="font-size: 13px; color: var(--text-secondary);">Садовая улица, 112 · Управа №19 «Студенческая», Белгород, 308007</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="tel:+79800859336" class="footer-link">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>+7-980-085-93-36</span>
+          </a>
+          <a href="https://t.me/pro_coffee_belgorod" target="_blank" rel="noopener noreferrer" class="footer-link">
+            <svg class="icon" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <span>Telegram</span>
+          </a>
+          <a href="https://yandex.ru/maps/?text=Белгород, Садовая улица, 112" target="_blank" rel="noopener noreferrer" class="footer-link">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Яндекс.Карты</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© Кофейня «Про кофе»</span>
+        <span>Ежедневно с 09:00 до 21:00</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 4. Floating Preorder Bar -->
+  <div class="cart-bar" id="cartBar" role="button" tabindex="0">
+    <div class="cart-bar-left">
+      <div class="cart-count" id="cartCount">0</div>
+      <div>
+        <div class="cart-bar-title">Кофе с собой</div>
+        <div class="cart-bar-sub" id="cartTimePreview">Готовность через 15 мин</div>
+      </div>
+    </div>
+    <div class="cart-bar-right">
+      <span id="cartTotalBar">0 ₽</span>
+      <svg class="icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+  </div>
+
+  <!-- 4. Preorder Modal Sheet -->
+  <div class="modal-backdrop" id="orderModal">
+    <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Кофе с собой</h3>
+        <button type="button" class="close-btn" id="closeModalBtn" aria-label="Закрыть">
+          <svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div id="orderItemsContainer"></div>
+
+      <div>
+        <span class="time-label">Когда подготовить заказ</span>
+        <div class="time-grid" id="timeSelector">
+          <button type="button" class="time-option" data-time="через 10 мин">Через 10 мин</button>
+          <button type="button" class="time-option active" data-time="через 15 мин">Через 15 мин</button>
+          <button type="button" class="time-option" data-time="через 20 мин">Через 20 мин</button>
+        </div>
+      </div>
+
+      <div class="cup-toggle" id="ownCupToggle" role="checkbox" aria-checked="false" tabindex="0">
+        <div class="cup-toggle-text">
+          <strong>В свой стакан</strong>
+          <span>Скидка 15% на весь заказ</span>
+        </div>
+        <div class="checkbox-box" id="ownCupCheck"></div>
+      </div>
+
+      <div class="order-summary">
+        <span class="order-total-label">Итого к оплате при получении</span>
+        <span class="order-total-sum" id="modalTotalSum">0 ₽</span>
+      </div>
+
+      <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-full btn-disabled" id="tgOrderBtn">
+        <svg class="icon" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        <span>Отправить заказ в Telegram</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const MENU_DATA = [
+      { id: 'c1', category: 'classic', name: 'Эспрессо', vol: '30 мл', desc: 'Эфиопия Гуджи, ноты бергамота и красных ягод', price: 190 },
+      { id: 'c2', category: 'classic', name: 'Фильтр-кофе', vol: '250 мл', desc: 'Свежий батч-брю, сбалансированная кислотность и сладость', price: 220 },
+      { id: 'c3', category: 'classic', name: 'Флэт Уайт', vol: '200 мл', desc: 'Двойной эспрессо с тонкой глянцевой молочной пеной', price: 270 },
+      { id: 'c4', category: 'classic', name: 'Капучино', vol: '250 мл', desc: 'Классический баланс эспрессо и бархатистого молока', price: 260 },
+      { id: 'c5', category: 'classic', name: 'Латте', vol: '300 мл', desc: 'Мягкий кофейно-молочный напиток (доступен на овсяном)', price: 290 },
+
+      { id: 's1', category: 'signature', name: 'Раф Солёная карамель', vol: '300 мл', desc: 'Сливки 10%, домашняя карамель с морской солью, эспрессо', price: 360 },
+      { id: 's2', category: 'signature', name: 'Латте Кардамон и Мёд', vol: '300 мл', desc: 'Свежемолотый зелёный кардамон, гречишный мёд, молоко', price: 350 },
+      { id: 's3', category: 'signature', name: 'Эспрессо-тоник Юдзу', vol: '300 мл', desc: 'Шот эспрессо, крафтовый тоник и пюре японского цитруса', price: 340 },
+      { id: 's4', category: 'signature', name: 'Матча-латте Церемониал', vol: '250 мл', desc: 'Японский зелёный чай Удзи, взбитый на кокосовом молоке', price: 370 },
+
+      { id: 'f1', category: 'food', name: 'Миндальный круассан', vol: '125 г', desc: 'Слоёное тесто на сливочном масле, франжипан, лепестки миндаля', price: 290 },
+      { id: 'f2', category: 'food', name: 'Кардамоновая булочка', vol: '110 г', desc: 'Тёплая сдобная плетенка с пряным кардамоном и тростниковым сахаром', price: 240 },
+      { id: 'f3', category: 'food', name: 'Сэндвич с индейкой и песто', vol: '210 г', desc: 'Чиабатта на закваске, запечённая индейка, моцарелла, базилик', price: 390 },
+      { id: 'f4', category: 'food', name: 'Баскский чизкейк', vol: '140 г', desc: 'Карамелизированная корочка и нежная кремовая середина', price: 340 }
+    ];
+
+    let activeCategory = 'classic';
+    let cart = {};
+    let selectedTime = 'через 15 мин';
+    let ownCup = false;
+
+    const menuContainer = document.getElementById('menuContainer');
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const cartBar = document.getElementById('cartBar');
+    const cartCountEl = document.getElementById('cartCount');
+    const cartTotalBarEl = document.getElementById('cartTotalBar');
+    const cartTimePreviewEl = document.getElementById('cartTimePreview');
+
+    const orderModal = document.getElementById('orderModal');
+    const openOrderHeroBtn = document.getElementById('openOrderHero');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const orderItemsContainer = document.getElementById('orderItemsContainer');
+    const modalTotalSumEl = document.getElementById('modalTotalSum');
+    const tgOrderBtn = document.getElementById('tgOrderBtn');
+    const timeOptions = document.querySelectorAll('.time-option');
+    const ownCupToggle = document.getElementById('ownCupToggle');
+    const ownCupCheck = document.getElementById('ownCupCheck');
+
+    // Parallax Scroll Handler
+    const parallaxCup = document.getElementById('parallaxCup');
+    let ticking = false;
+
+    function updateParallax() {
+      const scrollY = window.scrollY;
+      const rotation = -8 + scrollY * 0.032;
+      const translateY = scrollY * 0.14;
+      parallaxCup.style.transform = `translate3d(0, ${translateY}px, 0) rotate(${rotation}deg)`;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateParallax();
+
+    // Render Menu
+    function renderMenu() {
+      const filtered = MENU_DATA.filter(item => item.category === activeCategory);
+      menuContainer.innerHTML = filtered.map(item => {
+        const qty = cart[item.id] || 0;
+        const actionHtml = qty === 0
+          ? `<button type="button" class="add-btn" onclick="changeQty('${item.id}', 1)" aria-label="Добавить ${item.name}">
+               <svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+             </button>`
+          : `<div class="qty-control">
+               <button type="button" class="qty-btn" onclick="changeQty('${item.id}', -1)" aria-label="Уменьшить">
+                 <svg class="icon" style="width:14px;height:14px" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+               </button>
+               <span class="qty-val">${qty}</span>
+               <button type="button" class="qty-btn" onclick="changeQty('${item.id}', 1)" aria-label="Увеличить">
+                 <svg class="icon" style="width:14px;height:14px" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+               </button>
+             </div>`;
+
+        return `
+          <article class="menu-item">
+            <div class="menu-item-info">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">${item.name}</h3>
+                <span class="menu-item-vol">${item.vol}</span>
+              </div>
+              <p class="menu-item-desc">${item.desc}</p>
+            </div>
+            <div class="menu-item-right">
+              <span class="menu-item-price">${item.price} ₽</span>
+              ${actionHtml}
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // Cart Logic
+    window.changeQty = function(id, delta) {
+      const next = (cart[id] || 0) + delta;
+      if (next <= 0) {
+        delete cart[id];
+      } else {
+        cart[id] = next;
+      }
+      renderMenu();
+      updateCartUI();
+    };
+
+    function getCartStats() {
+      let count = 0;
+      let rawSum = 0;
+      const lines = [];
+
+      Object.entries(cart).forEach(([id, qty]) => {
+        const product = MENU_DATA.find(p => p.id === id);
+        if (product) {
+          count += qty;
+          rawSum += product.price * qty;
+          lines.push({ ...product, qty, subtotal: product.price * qty });
+        }
+      });
+
+      const finalSum = ownCup ? Math.round(rawSum * 0.85) : rawSum;
+      return { count, rawSum, finalSum, lines };
+    }
+
+    function updateCartUI() {
+      const { count, finalSum, lines } = getCartStats();
+
+      if (count > 0) {
+        cartBar.classList.add('visible');
+      } else {
+        cartBar.classList.remove('visible');
+      }
+
+      cartCountEl.textContent = count;
+      cartTotalBarEl.textContent = `${finalSum} ₽`;
+      cartTimePreviewEl.textContent = `Готовность ${selectedTime}`;
+
+      if (lines.length === 0) {
+        orderItemsContainer.innerHTML = `
+          <div class="empty-state">
+            <p>Вы пока ничего не выбрали из меню</p>
+            <button type="button" class="btn btn-secondary" onclick="closeModalToMenu()">Перейти к выбору</button>
+          </div>
+        `;
+        tgOrderBtn.classList.add('btn-disabled');
+        tgOrderBtn.setAttribute('href', '#');
+      } else {
+        orderItemsContainer.innerHTML = `<div class="order-items">` + lines.map(item => `
+          <div class="order-row">
+            <div>
+              <div class="order-row-title">${item.name}</div>
+              <div class="order-row-meta">${item.vol} · ${item.subtotal} ₽</div>
+            </div>
+            <div class="qty-control">
+              <button type="button" class="qty-btn" onclick="changeQty('${item.id}', -1)" aria-label="Уменьшить">
+                <svg class="icon" style="width:14px;height:14px" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <span class="qty-val">${item.qty}</span>
+              <button type="button" class="qty-btn" onclick="changeQty('${item.id}', 1)" aria-label="Увеличить">
+                <svg class="icon" style="width:14px;height:14px" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+        `).join('') + `</div>`;
+
+        tgOrderBtn.classList.remove('btn-disabled');
+
+        const orderLinesText = lines.map(i => `• ${i.name} (${i.vol}) × ${i.qty} — ${i.subtotal} ₽`).join('\n');
+        const cupNote = ownCup ? '\nСвой стакан: да (-15%)' : '';
+        const message = `Предзаказ в кофейню «Про кофе» (ул. Садовая, 112):\n\n${orderLinesText}${cupNote}\n\nГотовность: ${selectedTime}\nИтого: ${finalSum} ₽`;
+        const tgUrl = `https://t.me/share/url?url=&text=${encodeURIComponent(message)}`;
+        tgOrderBtn.setAttribute('href', tgUrl);
+      }
+
+      modalTotalSumEl.textContent = `${finalSum} ₽`;
+    }
+
+    // Category Switching
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.category;
+        renderMenu();
+      });
+    });
+
+    // Time Selection
+    timeOptions.forEach(btn => {
+      btn.addEventListener('click', () => {
+        timeOptions.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedTime = btn.dataset.time;
+        updateCartUI();
+      });
+    });
+
+    // Own Cup Toggle
+    function toggleCup() {
+      ownCup = !ownCup;
+      ownCupToggle.classList.toggle('checked', ownCup);
+      ownCupToggle.setAttribute('aria-checked', String(ownCup));
+      ownCupCheck.innerHTML = ownCup
+        ? `<svg class="icon" style="width:14px;height:14px" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`
+        : '';
+      updateCartUI();
+    }
+
+    ownCupToggle.addEventListener('click', toggleCup);
+    ownCupToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleCup();
+      }
+    });
+
+    // Modal Controls
+    function openModal() {
+      updateCartUI();
+      orderModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      orderModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    window.closeModalToMenu = function() {
+      closeModal();
+      document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+    };
+
+    openOrderHeroBtn.addEventListener('click', openModal);
+    cartBar.addEventListener('click', openModal);
+    cartBar.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal();
+      }
+    });
+    closeModalBtn.addEventListener('click', closeModal);
+    orderModal.addEventListener('click', (e) => {
+      if (e.target === orderModal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && orderModal.classList.contains('open')) closeModal();
+    });
+
+    // Initial Render
+    renderMenu();
+    updateCartUI();
+  </script>
+</body>
+</html>
